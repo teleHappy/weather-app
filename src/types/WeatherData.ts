@@ -1,4 +1,3 @@
-import { off } from "process";
 
 export interface WeatherData {
     lat: number;
