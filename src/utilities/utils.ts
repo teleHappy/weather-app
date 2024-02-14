@@ -23,8 +23,12 @@ function degToCompass(num: number) {
     return arr[val % 16];
   }
 
-  function getDateString(unix_timestamp: number) {
-    return moment.unix(unix_timestamp).format("dddd, MMMM Do YYYY, h:mm:ss a");
+  function getDateString(unix_timestamp: number, format?: string): string {
+    if(format === 'time'){
+      return moment.unix(unix_timestamp).format("h:mm a");
+    }
+    // default
+    return moment.unix(unix_timestamp).format("dddd, MMMM Do");
   }
 
   export { degToCompass, getDateString };

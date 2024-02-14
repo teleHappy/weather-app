@@ -17,7 +17,7 @@ function useWeatherData(lat: string, lon: string, units: string) {
             .finally(() => {    
                 setIsLoading(false);
             });
-    }, []); // Empty dependency array means this effect runs once on mount
+    }, [lat, lon, units]); // Empty dependency array means this effect runs once on mount
     
     async function getWeatherData(lat: string, lon: string, units: string) {
         const appid = import.meta.env.VITE_APP_WEATHER_DATA_API_KEY;
