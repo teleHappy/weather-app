@@ -1,6 +1,5 @@
-
 h1 {
-    font-size: 1.6rem!important;
+    font-size: 1.6rem !important;
     text-align: center;
     margin: 2rem;
 }
@@ -10,10 +9,10 @@ h1 {
     font-size: 1.1rem;
 }
 
-.weatherSection { 
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+.weatherSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .weatherSection .container {
@@ -22,7 +21,8 @@ h1 {
     max-width: 350px;
     width: 95%;
 }
-.weatherSection .container > div {
+
+.weatherSection .container>div {
     flex: 1;
 }
 
@@ -47,7 +47,8 @@ h1 {
 
 .observations h2 {
     font-size: 1.1rem;
-    margin: 5px;;
+    margin: 5px;
+    ;
 }
 
 .observationSection {
@@ -62,6 +63,3 @@ h1 {
     padding: 5px;
     font-size: 1rem;
 }
-
-  
-  

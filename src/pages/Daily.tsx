@@ -27,7 +27,7 @@ function Daily({ weatherData }: DailyProps) {
 
                 <section className={styles.weatherSection}>
                     {mode === 'tabular' &&
-                        <table className={styles.weatherTable}>
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Day</th>
