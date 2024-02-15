@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import { getDayRangeString, getDateString } from '../utilities/utils'; // adjust the path as needed
 import { Daily as Day } from "../types/WeatherData";
-import styles from './Daily.module.css';
 import { WeatherData } from "../types/WeatherData";
 
 function getIconUrl(icon: string) {
@@ -23,9 +22,9 @@ function Daily({ weatherData }: DailyProps) {
 
                 <NavBar selected="daily" />
 
-                <h2 className={styles.dayRangeHeader}>{getDayRangeString(weatherData.daily)}</h2>
+                <h2 className="dayRangeHeader">{getDayRangeString(weatherData.daily)}</h2>
 
-                <section className={styles.weatherSection}>
+                <section className="weatherSection">
                     {mode === 'tabular' &&
                         <table>
                             <thead>

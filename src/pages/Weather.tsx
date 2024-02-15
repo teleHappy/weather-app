@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from '../components/NavBar';
 import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
-import styles from './Weather.module.css';
 import { WeatherData } from "../types/WeatherData";
 
 const getTableRow = (label: string, value: string) => {
@@ -31,21 +30,21 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
         
         <NavBar selected="current" />
         
-        <h2 className={styles.header2}>{getDateString(weatherData.current.dt)}</h2>
+        <h2 className="header2">{getDateString(weatherData.current.dt)}</h2>
         
-        <section className={styles.weatherSection}>
-          <div className={styles.container} style={{ height: "5rem" }}>
+        <section className="weatherSection">
+          <div className="container" style={{ height: "5rem" }}>
             {/* Current Temp */}
             <div>
-              <p className={styles.currentTemp}>{Math.round(weatherData.current.temp)} °F</p>
+              <p className="currentTemp">{Math.round(weatherData.current.temp)} °F</p>
             </div>
             {/* Current Icon */}
-            <div className={`${styles.currentIcon}`}>
+            <div className="currentIcon">
               <img width="100px" height="100px" src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt={weatherDescription} />
             </div>
           </div>
 
-          <div className={styles.container} style={{ height: "3rem" }}>
+          <div className="container" style={{ height: "3rem" }}>
             {/* Feels like */}
             <div>
               <p>Feels like: {Math.round(weatherData.current.feels_like)} °F</p>
@@ -55,7 +54,7 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
               <p>{weatherDescription}</p>
             </div>
           </div>
-          <div className={styles.container} style={{ display: "flex", height: "3rem", width: "70%" }}>
+          <div className="container" style={{ display: "flex", height: "3rem", width: "70%" }}>
             {/* High | Low Temp */}
             <div>
               <p>High: {Math.round(highTemp)} °F</p>
@@ -68,8 +67,8 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
         </section>
 
         {/* observation details */}
-        <section className={styles.observationSection}>
-          <div className={styles.observations}>
+        <section className="observationSection">
+          <div className="observations">
             <h2 >Observations</h2>
             <table>
               <tbody>
