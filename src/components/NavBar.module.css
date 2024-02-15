@@ -1,0 +1,42 @@
+
+/* Reset default margin and padding for ul and li */
+.nav_list, .nav_item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Style for navigation bar */
+  .navbar {
+    background-color: #004365;
+    border-radius: 10px;;
+  }
+  
+  /* Style for navigation list */
+  .nav_list {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Style for navigation item */
+  .nav_item {
+    margin-right: 20px; /* Add spacing between items */
+  }
+
+  
+  .nav_item.selected {
+    text-decoration: underline;
+  }
+
+  /* Style for navigation link */
+  .nav_item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .nav_item a:hover {
+    color: #02a9fd;
+  }
+  

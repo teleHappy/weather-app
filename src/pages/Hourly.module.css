@@ -1,0 +1,62 @@
+/* Reset default margin and padding for ul and li */
+.nav_list, .nav_item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Style for navigation bar */
+  .navbar {
+    background-color: #004365;
+    border-radius: 10px;;
+  }
+  
+  /* Style for navigation list */
+  .nav_list {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Style for navigation item */
+  .nav_item {
+    margin-right: 20px; /* Add spacing between items */
+  }
+
+  
+  .nav_item.selected {
+    text-decoration: underline;
+  }
+
+  /* Style for navigation link */
+  .nav_item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .nav_item a:hover {
+    color: #02a9fd;
+  }
+
+  /* Table styles */
+  section.hourly table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  section.hourly table th, section.hourly table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Alternate row colors */
+  section.hourly table tbody tr:nth-child(even) {
+    background-color: rgb(0 67 101 / 68%);
+  }
+
+  /* Hover effect */
+  section.hourly table tbody tr:hover {
+    background-color: hsla(200, 100%, 41%, 0.68);
+  }

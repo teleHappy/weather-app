@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { degToCompass, getDateString } from './utilities/utils'; // adjust the path as needed
-import useWeatherData from "./hooks/useWeatherData";
-import styles from './WeatherComponent.module.css';
+import NavBar from '../components/NavBar';
+import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
+import useWeatherData from "../hooks/useWeatherData";
+import styles from './Weather.module.css';
 
 const getTableRow = (label: string, value: string) => {
   return (
@@ -32,13 +33,7 @@ const WeatherComponent = () => {
     return (
       <div>
         <h1>Norfolk, Massachusetts</h1>
-        <nav className={styles.navbar}>
-          <ul className={styles.nav_list}>
-            <li className={`${styles.nav_item} ${styles.selected}`}><a href="#">Now</a></li>
-            <li className={styles.nav_item}><a href="#">Hourly</a></li>
-            <li className={styles.nav_item}><a href="#">Daily</a></li>
-          </ul>
-        </nav>
+        <NavBar selected="weather"/>
         <h2 className={styles.header2}>{getDateString(weatherData.current.dt)}</h2>
         <section className={styles.weatherSection}>
           <div className={styles.container} style={{ height: "5rem" }}>
