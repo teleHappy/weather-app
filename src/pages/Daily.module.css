@@ -1,0 +1,141 @@
+/* Reset default margin and padding for ul and li */
+
+h2.dayRangeHeader {
+    margin: 20px 0;
+    /* background-color: #027bb9; */
+    padding: 3px 0;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+
+h1 {
+    font-size: 1.6rem!important;
+    text-align: center;
+    margin: 2rem;
+}
+
+.header2 {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.weatherSection { 
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.weatherSection .container {
+    align-items: center;
+    display: flex;
+    max-width: 350px;
+    width: 95%;
+}
+.weatherSection .container > div {
+    flex: 1;
+}
+
+.weatherSection .container p {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.weatherSection .container p.currentTemp {
+    font-size: 3rem;
+}
+
+.currentIcon {
+    text-align: center;
+}
+
+.observations {
+    background-color: #004365;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.observations h2 {
+    font-size: 1.1rem;
+    margin: 5px;;
+}
+
+.observationSection {
+    margin-top: .8rem;
+}
+
+.observations table {
+    width: 100%;
+}
+
+.observations table tr td {
+    padding: 5px;
+    font-size: 1rem;
+}
+
+  
+  
+
+.nav_list, .nav_item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Style for navigation bar */
+  .navbar {
+    background-color: #004365;
+    border-radius: 10px;;
+  }
+  
+  /* Style for navigation list */
+  .nav_list {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Style for navigation item */
+  .nav_item {
+    margin-right: 20px; /* Add spacing between items */
+  }
+
+  
+  .nav_item.selected {
+    text-decoration: underline;
+  }
+
+  /* Style for navigation link */
+  .nav_item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .nav_item a:hover {
+    color: #02a9fd;
+  }
+
+  /* Table styles */
+  .weatherSection table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .weatherSection table th, .weatherSection table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Alternate row colors */
+  .weatherSection table tbody tr:nth-child(even) {
+    background-color: rgb(0 67 101 / 68%);
+  }
+
+  /* Hover effect */
+  .weatherSection table tbody tr:hover {
+    background-color: hsla(200, 100%, 41%, 0.68);
+  }
+
+  

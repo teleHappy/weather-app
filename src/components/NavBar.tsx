@@ -8,7 +8,7 @@ function NavBar({selected}: {selected: string}) {
           <ul className={styles.nav_list}>
             <li className={`${styles.nav_item} ${styles.selected}`}><Link to="/">Now</Link></li>
             <li className={styles.nav_item}><Link to="/hourly">Hourly</Link></li>
-            <li className={styles.nav_item}><a href="#">Daily</a></li>
+            <li className={styles.nav_item}><Link to="/daily">Daily</Link></li>
           </ul>
         </nav>
     );
