@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import NavBar from '../components/NavBar';
 import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
-import useWeatherData from "../hooks/useWeatherData";
 import styles from './Weather.module.css';
+import { WeatherData } from "../types/WeatherData";
 
 const getTableRow = (label: string, value: string) => {
   return (
@@ -13,17 +13,13 @@ const getTableRow = (label: string, value: string) => {
   )
 }
 
-const WeatherComponent = () => {
-  //42.34112443878151, -71.08650809985224
-  const lat = '42.34112443878151';
-  const lon = '-71.08650809985224';
-  const units = 'imperial';
-  const { weatherData, isLoading, error } = useWeatherData(lat, lon, units);
+type WeatherComponentProps = {
+  weatherData: WeatherData | null;
 
-  if (isLoading) return <div>Loading...</div>;
+}
 
-  if (error) return <div>{error}</div>;
-
+const Weather = ({weatherData}: WeatherComponentProps) => {
+  
   if (weatherData) {
     const weatherIcon = weatherData.current.weather[0].icon;
     const weatherDescription = weatherData.current.weather[0].description;
@@ -94,4 +90,4 @@ const WeatherComponent = () => {
   }
 }
 
-export default WeatherComponent;
+export default Weather;

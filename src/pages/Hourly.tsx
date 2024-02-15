@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import NavBar from "../components/NavBar";
 import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
-import useWeatherData from "../hooks/useWeatherData";
 import { WeatherData } from "../types/WeatherData";
 import styles from './Hourly.module.css';
 
@@ -64,23 +63,16 @@ const getTabularView = (weatherData: WeatherData) => {
             </table>
         </section>
     )
-
 }
 
+type HourlyProps = {
+    weatherData: WeatherData | null;
+}
 
-function Hourly() {
-    const lat = '42.34112443878151';
-    const lon = '-71.08650809985224';
-    const units = 'imperial';
-    const { weatherData, isLoading, error } = useWeatherData(lat, lon, units);
+function Hourly({weatherData}: HourlyProps) {
     let mode = 'tabular'
 
-    if (isLoading) return <div>Loading...</div>;
-
-    if (error) return <div>{error}</div>;
-
     if (weatherData) {
-
         return (
             <>
                 <h1>Norfolk, Massachusetts</h1>
@@ -94,8 +86,6 @@ function Hourly() {
             </>
         );
     }
-
-
 }
 
 export default Hourly;

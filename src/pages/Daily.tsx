@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { Link } from 'react-router-dom';
 import { getDayRangeString, getDateString } from '../utilities/utils'; // adjust the path as needed
-import useWeatherData from "../hooks/useWeatherData";
 import { Daily as Day } from "../types/WeatherData";
 import styles from './Daily.module.css';
+import { WeatherData } from "../types/WeatherData";
 
 function getIconUrl(icon: string) {
     return `http://openweathermap.org/img/wn/${icon}.png`;
 }
 
-function Daily() {
-    const lat = '42.34112443878151';
-    const lon = '-71.08650809985224';
-    const units = 'imperial';
-    const { weatherData, isLoading, error } = useWeatherData(lat, lon, units);
+type DailyProps = {
+    weatherData: WeatherData | null;
+}
+
+function Daily({weatherData}: DailyProps) {
+    
     let mode = 'tabular'
-
-    if (isLoading) return <div>Loading...</div>;
-
-    if (error) return <div>{error}</div>;
 
     if (weatherData) {
         return (
