@@ -10,6 +10,7 @@ h1 {
   text-align: center;
   margin: 2rem;
 }
+
 /* Current Weather */
 h2.currentHeader {
   text-align: center;
@@ -29,7 +30,7 @@ h2.currentHeader {
   width: 95%;
 }
 
-.weatherSection .container > div {
+.weatherSection .container>div {
   flex: 1;
 }
 
@@ -45,6 +46,7 @@ h2.currentHeader {
 .currentIcon {
   text-align: center;
 }
+
 /* observations */
 .observations {
   background-color: #004365;
@@ -140,7 +142,8 @@ h2.dayRangeHeader {
 }
 
 /* NavBar */
-.nav_list, .nav_item {
+.nav_list,
+.nav_item {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -148,7 +151,8 @@ h2.dayRangeHeader {
 
 .navbar {
   background-color: #004365;
-  border-radius: 10px;;
+  border-radius: 10px;
+  ;
 }
 
 .nav_list {
