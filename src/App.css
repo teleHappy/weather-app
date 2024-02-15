@@ -10,8 +10,8 @@ h1 {
   text-align: center;
   margin: 2rem;
 }
-
-.header2 {
+/* Current Weather */
+h2.currentHeader {
   text-align: center;
   font-size: 1.1rem;
 }
@@ -45,7 +45,7 @@ h1 {
 .currentIcon {
   text-align: center;
 }
-
+/* observations */
 .observations {
   background-color: #004365;
   border-radius: 10px;
@@ -71,6 +71,7 @@ h1 {
   font-size: 1rem;
 }
 
+/* Hourly */
 .hourly {
   align-items: center;
   display: flex;
@@ -109,6 +110,8 @@ h1 {
   text-align: right !important;
 }
 
+/* Daily */
+
 h2.dayRangeHeader {
   margin: 20px 0;
   padding: 3px 0;
@@ -136,6 +139,7 @@ h2.dayRangeHeader {
   background-color: hsla(200, 100%, 41%, 0.68);
 }
 
+/* NavBar */
 .nav_list, .nav_item {
   margin: 0;
   padding: 0;
@@ -153,9 +157,8 @@ h2.dayRangeHeader {
 }
 
 .nav_item {
-  margin-right: 20px; /* Add spacing between items */
+  margin-right: 20px;
 }
-
 
 .selected {
   text-decoration: underline;

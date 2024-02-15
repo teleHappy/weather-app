@@ -30,7 +30,7 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
         
         <NavBar selected="current" />
         
-        <h2 className="header2">{getDateString(weatherData.current.dt)}</h2>
+        <h2 className="currentHeader">{getDateString(weatherData.current.dt)}</h2>
         
         <section className="weatherSection">
           <div className="container" style={{ height: "5rem" }}>
