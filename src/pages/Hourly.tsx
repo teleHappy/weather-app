@@ -4,9 +4,9 @@ import { degToCompass, getDateString } from '../utilities/utils'; // adjust the 
 import { WeatherData } from "../types/WeatherData";
 import styles from './Hourly.module.css';
 
-const getTabularView = (weatherData: WeatherData) => {
+const getHourlyTabularView = (weatherData: WeatherData) => {
     const cachedArray: string[] = [];
-
+    // console.log("hourly")
     return (
         <section className={styles.hourly}>
             <table>
@@ -27,24 +27,24 @@ const getTabularView = (weatherData: WeatherData) => {
                         if (!cachedArray.includes(dayStr)) {
                             cachedArray.push(dayStr);
                             return (
-                                <>
-                                    <tr className={styles.fullDateRow} key={index+"daterow"}>
-                                        <td colSpan={6}>{getDateString(hour.dt, "full")}</td>
-                                    </tr>
-                                    <tr key={index}>
-                                        <td>{getDateString(hour.dt, 'time')}</td>
-                                        <td className={styles.tdAlignRight}>{Math.round(hour.temp)} °F</td>
-                                        <td className={styles.tdAlignRight}>{Math.round(hour.feels_like)} °F</td>
-                                        <td>{degToCompass(hour.wind_deg)} {Math.round(hour.wind_speed)} mph</td>
-                                        <td className={styles.tdAlignRight}>{hour.humidity} %</td>
-                                        <td>{hour.weather[0].description}</td>
-                                    </tr>
-                                </>
+
+                                [<tr className={styles.fullDateRow} key={hour.dt + "daterow"}>
+                                    <td colSpan={6}>{getDateString(hour.dt, "full")}</td>
+                                </tr>,
+                                <tr key={hour.dt}>
+                                    <td>{getDateString(hour.dt, 'time')}</td>
+                                    <td className={styles.tdAlignRight}>{Math.round(hour.temp)} °F</td>
+                                    <td className={styles.tdAlignRight}>{Math.round(hour.feels_like)} °F</td>
+                                    <td>{degToCompass(hour.wind_deg)} {Math.round(hour.wind_speed)} mph</td>
+                                    <td className={styles.tdAlignRight}>{hour.humidity} %</td>
+                                    <td>{hour.weather[0].description}</td>
+                                </tr>]
+
                             )
                         }
                         else {
                             return (
-                                <tr key={index}>
+                                <tr key={hour.dt + "single"}>
                                     <td>{getDateString(hour.dt, 'time')}</td>
                                     <td className={styles.tdAlignRight}>{Math.round(hour.temp)} °F</td>
                                     <td className={styles.tdAlignRight}>{Math.round(hour.feels_like)} °F</td>
@@ -65,7 +65,7 @@ type HourlyProps = {
     weatherData: WeatherData | null;
 }
 
-function Hourly({weatherData}: HourlyProps) {
+function Hourly({ weatherData }: HourlyProps) {
     let mode = 'tabular'
 
     if (weatherData) {
@@ -76,7 +76,7 @@ function Hourly({weatherData}: HourlyProps) {
 
                 <section className={styles.weatherSection}>
                     <div>
-                        {mode === 'tabular' && getTabularView(weatherData)}
+                        {mode === 'tabular' && getHourlyTabularView(weatherData)}
                     </div>
                 </section>
             </>

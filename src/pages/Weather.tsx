@@ -15,7 +15,6 @@ const getTableRow = (label: string, value: string) => {
 
 type WeatherComponentProps = {
   weatherData: WeatherData | null;
-
 }
 
 const Weather = ({weatherData}: WeatherComponentProps) => {

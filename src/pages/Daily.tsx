@@ -34,7 +34,6 @@ function Daily({ weatherData }: DailyProps) {
                                     <th>Conditions</th>
                                     <th>Hi | Lo</th>
                                     <th>Description</th>
-
                                 </tr>
                             </thead>
                             <tbody>
