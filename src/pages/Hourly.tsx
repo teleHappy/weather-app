@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import NavBar from "../components/NavBar";
 import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
 import { WeatherData } from "../types/WeatherData";
@@ -21,7 +21,6 @@ const getTabularView = (weatherData: WeatherData) => {
                     </tr>
                 </thead>
                 <tbody>
-
                     {weatherData.hourly.map((hour, index) => {
                         const dayStr = getDateString(hour.dt, "day");
 
@@ -43,11 +42,8 @@ const getTabularView = (weatherData: WeatherData) => {
                                 </>
                             )
                         }
-
                         else {
-
                             return (
-
                                 <tr key={index}>
                                     <td>{getDateString(hour.dt, 'time')}</td>
                                     <td className={styles.tdAlignRight}>{Math.round(hour.temp)} °F</td>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NavBar from '../components/NavBar';
 import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
 import styles from './Weather.module.css';
@@ -67,6 +67,8 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
             </div>
           </div>
         </section>
+
+        {/* observation details */}
         <section className={styles.observationSection}>
           <div className={styles.observations}>
             <h2 >Observations</h2>
@@ -86,7 +88,6 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
         </section>
       </div>
     )
-
   }
 }
 

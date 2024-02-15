@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NavBar from "../components/NavBar";
 import { getDayRangeString, getDateString } from '../utilities/utils'; // adjust the path as needed
 import { Daily as Day } from "../types/WeatherData";
@@ -13,22 +13,20 @@ type DailyProps = {
     weatherData: WeatherData | null;
 }
 
-function Daily({weatherData}: DailyProps) {
-    
+function Daily({ weatherData }: DailyProps) {
     let mode = 'tabular'
 
     if (weatherData) {
         return (
             <>
                 <h1>Norfolk, Massachusetts</h1>
+
                 <NavBar selected="daily" />
-             
+
                 <h2 className={styles.dayRangeHeader}>{getDayRangeString(weatherData.daily)}</h2>
-             
+
                 <section className={styles.weatherSection}>
-
                     {mode === 'tabular' &&
-
                         <table className={styles.weatherTable}>
                             <thead>
                                 <tr>
@@ -46,19 +44,15 @@ function Daily({weatherData}: DailyProps) {
                                         <td><img src={getIconUrl(day.weather[0].icon)} /></td>
                                         <td>{Math.round(day.temp.max)} | {Math.round(day.temp.min)}</td>
                                         <td>{day.weather[0].description}</td>
-
                                     </tr>
                                 ))}
                             </tbody>
-
                         </table>
                     }
                 </section>
             </>
         );
     }
-
-
 }
 
 export default Daily;

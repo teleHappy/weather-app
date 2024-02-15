@@ -7,28 +7,23 @@ import Daily from './pages/Daily';
 import useWeatherData from './hooks/useWeatherData';
 
 function App() {
-
-
   const lat = '42.34112443878151';
   const lon = '-71.08650809985224';
   const units = 'imperial';
   const { weatherData, isLoading, error } = useWeatherData(lat, lon, units);
 
-
   if (isLoading) return <div>Loading...</div>
 
   if (error) return <div>{error}</div>
 
-
-  return (<>
+  return (
     <Router>
       <Routes>
-        <Route path="/" element={<Weather weatherData={weatherData}/>} />
-        <Route path="/hourly" element={<Hourly weatherData={weatherData}/>} />
-        <Route path="/daily" element={<Daily weatherData={weatherData}/>} />
+        <Route path="/" element={<Weather weatherData={weatherData} />} />
+        <Route path="/hourly" element={<Hourly weatherData={weatherData} />} />
+        <Route path="/daily" element={<Daily weatherData={weatherData} />} />
       </Routes>
     </Router>
-  </>
   );
 }
 
