@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { WeatherData } from '../types/WeatherData';
 
-function useWeatherData(lat: string, lon: string, units: string) {
+function useWeatherData(lat: string = '42.34112443878151', lon: string = '-71.08650809985224', units: string = 'imperial') {
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ function useWeatherData(lat: string, lon: string, units: string) {
             .finally(() => {    
                 setIsLoading(false);
             });
-    }, [lat, lon, units]); // Empty dependency array means this effect runs once on mount
+    }, [lat, lon, units]);
     
     async function getWeatherData(lat: string, lon: string, units: string) {
         const appid = import.meta.env.VITE_APP_WEATHER_DATA_API_KEY;

@@ -33,8 +33,11 @@ const WeatherComponent = () => {
     return (
       <div>
         <h1>Norfolk, Massachusetts</h1>
-        <NavBar selected="weather"/>
+        
+        <NavBar selected="weather" />
+        
         <h2 className={styles.header2}>{getDateString(weatherData.current.dt)}</h2>
+        
         <section className={styles.weatherSection}>
           <div className={styles.container} style={{ height: "5rem" }}>
             {/* Current Temp */}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
 
-function NavBar(selected: string = '') {
+function NavBar({selected}: {selected: string}) {
     return (
         <nav className={styles.navbar}>
           <ul className={styles.nav_list}>
