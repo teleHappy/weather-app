@@ -24,7 +24,7 @@ function Daily({ weatherData }: DailyProps) {
 
                 <h2 className="dayRangeHeader">{getDayRangeString(weatherData.daily)}</h2>
 
-                <section className="weatherSection">
+                <section className="daily">
                     {mode === 'tabular' &&
                         <table>
                             <thead>
