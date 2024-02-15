@@ -7,8 +7,9 @@ import Daily from './pages/Daily';
 import useWeatherData from './hooks/useWeatherData';
 
 function App() {
-  const lat = '42.34112443878151';
-  const lon = '-71.08650809985224';
+  //42.121387770611385, -71.32166428007152
+  const lat = '42.120369157440514';
+  const lon = '-71.32166428007152';
   const units = 'imperial';
   const { weatherData, isLoading, error } = useWeatherData(lat, lon, units);
 

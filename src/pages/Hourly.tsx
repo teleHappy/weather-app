@@ -1,11 +1,11 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
+import { degToCompass, getDateString } from '../utilities/utils';
 import { WeatherData } from "../types/WeatherData";
 
 const getHourlyTabularView = (weatherData: WeatherData) => {
     const cachedArray: string[] = [];
-    // console.log("hourly")
+
     return (
         <section className="hourly">
             <table>
@@ -38,7 +38,6 @@ const getHourlyTabularView = (weatherData: WeatherData) => {
                                     <td className="tdAlignRight">{hour.humidity} %</td>
                                     <td>{hour.weather[0].description}</td>
                                 </tr>]
-
                             )
                         }
                         else {
