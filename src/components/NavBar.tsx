@@ -1,17 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './NavBar.module.css';
+// import styles from './NavBar.module.css';
 
-function NavBar({selected}: {selected: string}) {
-    return (
-        <nav className={styles.navbar}>
-          <ul className={styles.nav_list}>
-            <li className={`${styles.nav_item} ${styles.selected}`}><Link to="/">Now</Link></li>
-            <li className={styles.nav_item}><Link to="/hourly">Hourly</Link></li>
-            <li className={styles.nav_item}><Link to="/daily">Daily</Link></li>
-          </ul>
-        </nav>
-    );
+function NavBar({ selected }: { selected: string }) {
+  
+  const navArrayMap: string[][] = [
+    ['current', '/', 'Now'],
+    ['daily', '/daily', 'Daily'],
+    ['hourly', '/hourly', 'Hourly'],
+  ]
+
+  return (
+    <nav className={"navbar"}>
+      <ul className={"nav_list"}>
+        {navArrayMap.map((navItem, index) => {
+          const navItemClass = "nav_item ";
+          const selectedClass = navItem[0] === selected ? "selected" : "";
+
+          return (<li className={navItemClass + selectedClass} key={index}><Link to={navItem[1]}>{navItem[2]}</Link></li>)
+        })}
+      </ul>
+    </nav>
+  );
 }
 
 export default NavBar;

@@ -72,6 +72,7 @@ function Hourly({ weatherData }: HourlyProps) {
         return (
             <>
                 <h1>Norfolk, Massachusetts</h1>
+                
                 <NavBar selected="hourly" />
 
                 <section className={styles.weatherSection}>

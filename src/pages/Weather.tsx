@@ -29,7 +29,7 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
       <div>
         <h1>Norfolk, Massachusetts</h1>
         
-        <NavBar selected="weather" />
+        <NavBar selected="current" />
         
         <h2 className={styles.header2}>{getDateString(weatherData.current.dt)}</h2>
         
