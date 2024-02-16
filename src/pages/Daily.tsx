@@ -27,21 +27,21 @@ function Daily({ weatherData }: DailyProps) {
                 <section className="daily">
                     {mode === 'tabular' &&
                         <table>
-                            <thead>
+                            {/* <thead>
                                 <tr>
                                     <th>Day</th>
                                     <th>Conditions</th>
                                     <th>Hi | Lo</th>
                                     <th>Description</th>
                                 </tr>
-                            </thead>
+                            </thead> */}
                             <tbody>
                                 {weatherData.daily.map((day: Day) => (
                                     <tr key={day.dt}>
                                         <td>{getDateString(day.dt, 'day')}</td>
                                         <td><img src={getIconUrl(day.weather[0].icon)} /></td>
                                         <td>{Math.round(day.temp.max)} | {Math.round(day.temp.min)}</td>
-                                        <td>{day.weather[0].description}</td>
+                                        <td>{day.summary}</td>
                                     </tr>
                                 ))}
                             </tbody>

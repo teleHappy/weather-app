@@ -89,13 +89,30 @@ h2.currentHeader {
 
 .hourly table th,
 .hourly table td {
-  padding: 8px;
+  padding: 14px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  
 }
 
-.hourly table tbody tr:nth-child(even) {
+.hourly table td:first-child{
+  border-left: 1px solid #ddd;
+  width: 70px;
+}
+
+.hourly table td:last-child{
+  border-right: 1px solid #ddd;
+}
+
+.hourly table tbody tr.odd {
   background-color: rgb(0 67 101 / 68%);
+}
+
+.hourly table tbody tr:first-child {
+  border-top: 1px solid #fff;
+}
+
+.hourly table tbody tr:last-child {
+  border-bottom: 1px solid #fff;
 }
 
 .hourly table tbody tr:hover {
@@ -109,7 +126,7 @@ h2.currentHeader {
 }
 
 .tdAlignRight {
-  text-align: right !important;
+  text-align: left
 }
 
 /* Daily */
@@ -130,10 +147,19 @@ h2.dayRangeHeader {
 .daily table td {
   padding: 8px;
   text-align: left;
+  border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
 
-.daily table tbody tr:nth-child(even) {
+.daily table td:first-child{
+  border-left: 1px solid #ddd;
+}
+
+.daily table td:last-child{
+  border-right: 1px solid #ddd;
+}
+
+.daily table tbody tr:nth-child(odd) {
   background-color: rgb(0 67 101 / 68%);
 }
 
@@ -177,4 +203,22 @@ h2.dayRangeHeader {
 
 .nav_item a:hover {
   color: #02a9fd;
+}
+
+@media (max-width: 915px) {
+  .hourly table th:nth-child(5), .hourly table td:nth-child(5){
+    display: none;
+  }
+
+  .hourly table th:nth-child(3), .hourly table td:nth-child(3){
+    display: none;
+  }
+  
+  .daily table th:nth-child(2), .daily table td:nth-child(2){
+    display: none;
+  }
+
+  .daily table th:nth-child(3), .daily table td:nth-child(3){
+    width: 70px
+  }
 }

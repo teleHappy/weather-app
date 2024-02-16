@@ -35,7 +35,7 @@ function getDateString(unix_timestamp: number, format?: string): string {
     return moment.unix(unix_timestamp).format("h:mm a");
   }
   if (format === "day") {
-    return moment.unix(unix_timestamp).format("dddd");
+    return moment.unix(unix_timestamp).format("ddd");
   }
   if (format === "full") {
     return moment.unix(unix_timestamp).format("dddd, MMMM Do, YYYY");

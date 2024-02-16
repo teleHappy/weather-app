@@ -8,8 +8,8 @@ import useWeatherData from './hooks/useWeatherData';
 
 function App() {
   //42.121387770611385, -71.32166428007152
-  const lat = '42.120369157440514';
-  const lon = '-71.32166428007152';
+  const lat = '42.1177';
+  const lon = '-71.3269';
   const units = 'imperial';
   const { weatherData, isLoading, error } = useWeatherData(lat, lon, units);
 
