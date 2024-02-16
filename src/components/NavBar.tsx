@@ -17,7 +17,7 @@ function NavBar({ selected }: { selected: string }) {
           const navItemClass = "nav_item ";
           const selectedClass = navItem[0] === selected ? "selected" : "";
 
-          return (<li className={navItemClass + selectedClass} key={index}><Link to={navItem[1]}>{navItem[2]}</Link></li>)
+          return (<li className={navItemClass + selectedClass} key={index}><Link to={"/weather-app" + navItem[1]}>{navItem[2]}</Link></li>)
         })}
       </ul>
     </nav>

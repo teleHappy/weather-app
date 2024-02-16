@@ -7,5 +7,6 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), reactRefresh(), tsconfigPaths()]
+  plugins: [react(), reactRefresh(), tsconfigPaths()],
+  base: '/weather-app/'
 })
