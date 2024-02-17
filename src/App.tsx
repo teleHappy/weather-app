@@ -7,12 +7,12 @@ import Daily from './pages/Daily';
 import useWeatherData from './hooks/useWeatherData';
 
 function App() {
-  const lat = '42.1177';
-  const lon = '-71.3269';
+  const lat = '42.11943';
+  const lon = '-71.33055';
   const units = 'imperial';
   const { weatherData, isLoading, error } = useWeatherData(lat, lon, units);
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <div id="loading">Loading...</div>
 
   if (error) return <div>{error}</div>
 

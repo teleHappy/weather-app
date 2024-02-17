@@ -7,7 +7,8 @@ function useWeatherData(lat: string = '42.34112443878151', lon: string = '-71.08
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getWeatherData(lat, lon, units)
+        setTimeout(() => {
+            getWeatherData(lat, lon, units)
             .then(responseData => {
                 setWeatherData(responseData);
             })
@@ -17,6 +18,8 @@ function useWeatherData(lat: string = '42.34112443878151', lon: string = '-71.08
             .finally(() => {    
                 setIsLoading(false);
             });
+        }, 600)
+        
     }, [lat, lon, units]);
     
     async function getWeatherData(lat: string, lon: string, units: string) {
