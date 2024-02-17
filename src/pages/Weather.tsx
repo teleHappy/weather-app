@@ -33,18 +33,18 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
         <h2 className="currentHeader">{getDateString(weatherData.current.dt)}</h2>
         
         <section className="weatherSection">
-          <div className="container" style={{ height: "5rem" }}>
+          <div className="container">
             {/* Current Temp */}
             <div>
               <p className="currentTemp">{Math.round(weatherData.current.temp)} °F</p>
             </div>
             {/* Current Icon */}
             <div className="currentIcon">
-              <img width="100px" height="100px" src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt={weatherDescription} />
+              <img src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt={weatherDescription} />
             </div>
           </div>
 
-          <div className="container" style={{ height: "3rem" }}>
+          <div className="container" >
             {/* Feels like */}
             <div>
               <p>Feels like: {Math.round(weatherData.current.feels_like)} °F</p>
@@ -54,32 +54,24 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
               <p>{weatherDescription}</p>
             </div>
           </div>
-          <div className="container" style={{ display: "flex", height: "3rem", width: "70%" }}>
-            {/* High | Low Temp */}
-            <div>
-              <p>High: {Math.round(highTemp)} °F</p>
-            </div>
-            <div style={{ textAlign: "center", flexGrow: 0 }}>|</div>
-            <div>
-              <p>Low: {Math.round(lowTemp)} °F</p>
-            </div>
-          </div>
         </section>
 
         {/* observation details */}
         <section className="observationSection">
           <div className="observations">
-            <h2 >Observations</h2>
+            <h2 >Current Observations</h2>
             <table>
               <tbody>
-                {getTableRow('Current wind', `${Math.ceil(weatherData.current.wind_speed)} mph`)}
-                {getTableRow('Current wind', degToCompass(weatherData.current.wind_deg))}
-                {getTableRow('Current humidity', `${weatherData.current.humidity}%`)}
+                {getTableRow('High', `${Math.round(highTemp)} °F`)}
+                {getTableRow('Low', `${Math.round(lowTemp)} °F`)}
+                {getTableRow('Wind', `${Math.ceil(weatherData.current.wind_speed)} mph`)}
+                {getTableRow('Wind Direction', degToCompass(weatherData.current.wind_deg))}
+                {getTableRow('Humidity', `${weatherData.current.humidity}%`)}
                 {getTableRow('Sunrise', getDateString(weatherData.current.sunrise, 'time'))}
                 {getTableRow('Sunset', getDateString(weatherData.current.sunset, 'time'))}
-                {getTableRow('Current clouds', `${weatherData.current.clouds}%`)}
-                {getTableRow('Current visibility', `${weatherData.current.visibility / 1000} km`)}
-                {getTableRow('Current dew point', `${weatherData.current.dew_point} °F`)}
+                {getTableRow('Clouds', `${weatherData.current.clouds}%`)}
+                {getTableRow('Visibility', `${weatherData.current.visibility / 1000} km`)}
+                {getTableRow('Dew point', `${weatherData.current.dew_point} °F`)}
               </tbody>
             </table>
           </div>
