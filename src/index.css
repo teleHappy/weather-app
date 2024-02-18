@@ -2,6 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  padding-top: 20px;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -25,10 +26,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: start;
   min-width: 320px;
   min-height: 100vh;
+  background: rgb(0,67,101);
+background: linear-gradient(320deg, rgba(0,67,101,1) 50%, rgb(46 94 125) 100%);
 }
 
 h1 {

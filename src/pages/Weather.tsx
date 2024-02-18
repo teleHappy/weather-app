@@ -40,7 +40,8 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
             </div>
             {/* Current Icon */}
             <div className="currentIcon">
-              <img src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt={weatherDescription} />
+              <img src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`} 
+                width="100" height="100" alt={weatherDescription} />
             </div>
           </div>
 
@@ -64,8 +65,7 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
               <tbody>
                 {getTableRow('High', `${Math.round(highTemp)} °F`)}
                 {getTableRow('Low', `${Math.round(lowTemp)} °F`)}
-                {getTableRow('Wind', `${Math.ceil(weatherData.current.wind_speed)} mph`)}
-                {getTableRow('Wind Direction', degToCompass(weatherData.current.wind_deg))}
+                {getTableRow('Wind', degToCompass(weatherData.current.wind_deg) + " " + `${Math.ceil(weatherData.current.wind_speed)} mph`)}
                 {getTableRow('Humidity', `${weatherData.current.humidity}%`)}
                 {getTableRow('Sunrise', getDateString(weatherData.current.sunrise, 'time'))}
                 {getTableRow('Sunset', getDateString(weatherData.current.sunset, 'time'))}
