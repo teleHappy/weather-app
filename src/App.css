@@ -110,7 +110,7 @@ h2.currentHeader {
 }
 
 .hourly table tbody tr.odd {
-  background-color: rgb(0 67 101 / 68%);
+  background-color: #0a588c;
 }
 
 .hourly table tbody tr:first-child {
