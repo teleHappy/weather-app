@@ -6,15 +6,18 @@
 }
 
 h1 {
-  font-size: 1.4rem !important;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 1.4rem!important;
   text-align: center;
-  margin: 0
 }
 
 /* Current Weather */
 h2.currentHeader {
-  text-align: center;
+  margin: 20px 0;
+  padding: 0;
   font-size: 1.1rem;
+  text-align: center;
 }
 
 .weatherSection {
@@ -51,10 +54,9 @@ h2.currentHeader {
 
 /* observations */
 .observations {
-  background-color: #094e71;
+  background-color: #0b5e88;
   border-radius: 10px;
   padding: 8px;
-  opacity: .6;
 }
 
 .observations h2 {
@@ -71,9 +73,10 @@ h2.currentHeader {
   width: 100%;
 }
 
+
 .observations table tr td {
   padding: 5px;
-  border-top: 1px solid #2f2f2f;
+  border-top: 1px solid #767676;
 }
 
 /* Hourly */
@@ -136,7 +139,6 @@ h2.currentHeader {
 
 h2.dayRangeHeader {
   margin: 20px 0;
-  padding: 3px 0;
   text-align: center;
   font-size: 1.1rem;
 }
