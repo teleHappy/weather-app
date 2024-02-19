@@ -24,7 +24,7 @@ a:hover {
 body {
   margin: 0;
   padding-bottom: 40px;
-  min-width: 320px;
+  min-width: 390px;
   min-height: 100vh;
   background: rgb(0,67,101);
 background: linear-gradient(320deg, rgba(0,67,101,1) 50%, rgb(46 94 125) 100%);
