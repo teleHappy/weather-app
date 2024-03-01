@@ -8,7 +8,7 @@
 h1 {
   margin: 0;
   padding: 10px 0;
-  font-size: 1.4rem!important;
+  font-size: 1.3rem !important;
   text-align: center;
 }
 
@@ -35,7 +35,7 @@ h2.currentHeader {
 }
 
 .weatherSection .container>div {
-  flex: 1;  
+  flex: 1;
 }
 
 .weatherSection .container p {
@@ -49,7 +49,9 @@ h2.currentHeader {
 }
 
 .currentIcon {
-  text-align: center; 
+  text-align: center;
+  background-color: rgb(255 255 255 / 50%);
+  border-radius: 0.5rem;
 }
 
 /* observations */
@@ -97,15 +99,15 @@ h2.currentHeader {
 .hourly table td {
   padding: 14px;
   text-align: left;
-  
+
 }
 
-.hourly table td:first-child{
+.hourly table td:first-child {
   border-left: 1px solid #ddd;
   width: 70px;
 }
 
-.hourly table td:last-child{
+.hourly table td:last-child {
   border-right: 1px solid #ddd;
 }
 
@@ -156,11 +158,11 @@ h2.dayRangeHeader {
   border-bottom: 1px solid #ddd;
 }
 
-.daily table td:first-child{
+.daily table td:first-child {
   border-left: 1px solid #ddd;
 }
 
-.daily table td:last-child{
+.daily table td:last-child {
   border-right: 1px solid #ddd;
 }
 
@@ -212,19 +214,201 @@ h2.dayRangeHeader {
 }
 
 @media (max-width: 915px) {
-  .hourly table th:nth-child(5), .hourly table td:nth-child(5){
+
+  .hourly table th:nth-child(5),
+  .hourly table td:nth-child(5) {
     display: none;
   }
 
-  .hourly table th:nth-child(3), .hourly table td:nth-child(3){
-    display: none;
-  }
-  
-  .daily table th:nth-child(3){
+  .hourly table th:nth-child(3),
+  .hourly table td:nth-child(3) {
     display: none;
   }
 
-  .daily table th:nth-child(3), .daily table td:nth-child(3){
+  .daily table th:nth-child(3) {
+    display: none;
+  }
+
+  .daily table th:nth-child(3),
+  .daily table td:nth-child(3) {
     width: 70px
   }
+}
+
+/* Location */
+
+#locationHeader {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-column-gap: 1em;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.locationOpen {
+  all: unset;
+  font-weight: 600;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#locationTabs {
+  display: flex;
+  margin-top: 1.2rem;
+  ;
+}
+
+#locationTabs button {
+  color: rgb(2 105 187);
+  border: 0;
+  background-color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#locationTabs button.active {
+  text-decoration: none;
+}
+
+dialog {
+  padding: 1rem .5rem;
+  offset-anchor: initial;
+  width: 21.6rem;
+  background-color: #d9d9d8;
+  height: 17rem;
+  overflow: hidden;
+  border: 0;
+  box-shadow: 2px 11px 12px 0px rgba(0, 0, 0, 0.75);
+}
+
+dialog::backdrop {
+  background-color: rgb(13 42 55 / 54%);
+}
+
+
+.cancelBtn {
+  all: unset;
+  font-size: .7rem;
+  position: absolute;
+  right: .4rem;
+  top: 0.3rem;
+  color: #fff;
+  background-color: rgb(202, 35, 35);
+  padding: 2px 4px;
+  border-radius: 3px;
+  width: .9rem;
+  height: 1.1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cancelBtn .del {
+  width: 100%;
+  font-size: .5rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: .625px 1.25px;
+}
+
+section.search {
+  width: 100%;
+  margin-top: .7rem;
+  padding: 0 10px 20px 0;
+}
+
+/*  */
+section.search button {
+  all: unset;
+  background-color: rgb(129 136 132 / 58%);
+  padding: .1rem .2rem;
+  text-align: center;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.search-fields {
+  display: grid;
+  grid-template-columns: 1fr 5rem;
+  grid-column-gap: 0.6rem;
+  justify-content: center;
+  padding: .3rem 0;
+
+}
+
+#location-error {
+  color: rgb(202, 35, 35);
+  padding-left: .3rem;
+}
+
+.search,
+.saved {
+  display: none;
+  ;
+}
+
+.search.active,
+.saved.active {
+  display: block;
+}
+
+.results h2 {
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+  color: rgb(6 6 6);
+}
+
+.results ul,
+.saved ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 1.5rem;
+}
+
+.results ul>li {
+  display: grid;
+  grid-template-columns: min-content max-content 1fr 3rem;
+
+  color: rgb(6 6 6);
+}
+
+.saved ul>li {
+  display: grid;
+  grid-template-columns: 1.2rem 14rem 1fr 1rem;
+  align-items: center;
+  margin-bottom: .8rem;
+}
+
+.saved ul > li button {
+  all: unset;
+  font-size: .8rem;
+  color: #ffffff;
+  background-color: #3b82f6;
+  text-align: center;
+  border-radius: 0.2rem;
+  cursor: pointer;
+} 
+
+.saved ul>li button.remove{
+  width: 100%;
+  font-size: .5rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 2.5px 1.25px;
+  color: #ffffff;
+  background-color: rgb(202, 35, 35);
+}
+
+.results ul>li>span,
+.saved ul>li>span {
+  padding-right: .2rem;
+}
+
+button.btn_primary {
+  font-size: .8rem !important;
+  color: #ffffff !important;
+  background-color: #3b82f6 !important;
 }

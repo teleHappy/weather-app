@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import { getDayRangeString, getDateString } from '../utilities/utils'; // adjust the path as needed
 import { Daily as Day } from "../types/WeatherData";
 import { WeatherData } from "../types/WeatherData";
+import LocationHeader from "../components/LocationHeader";
 
 function getIconUrl(icon: string) {
     return `http://openweathermap.org/img/wn/${icon}.png`;
@@ -18,7 +19,7 @@ function Daily({ weatherData }: DailyProps) {
     if (weatherData) {
         return (
             <>
-                <h1>Norfolk, Massachusetts</h1>
+               <LocationHeader />
 
                 <NavBar selected="daily" />
 
@@ -39,8 +40,8 @@ function Daily({ weatherData }: DailyProps) {
                                 {weatherData.daily.map((day: Day) => (
                                     <tr key={day.dt}>
                                         <td>{getDateString(day.dt, 'day')}</td>
-                                        <td><img src={getIconUrl(day.weather[0].icon)} /></td>
-                                        <td>{Math.round(day.temp.max)} | {Math.round(day.temp.min)}</td>
+                                        <td style={{backgroundColor: "rgb(255 255 255 / 50%)"}}><img src={getIconUrl(day.weather[0].icon)} /></td>
+                                        <td style={{width: "4rem", textAlign: "right"}}>{Math.round(day.temp.max)} | {Math.round(day.temp.min)}</td>
                                         <td>{day.summary}</td>
                                     </tr>
                                 ))}

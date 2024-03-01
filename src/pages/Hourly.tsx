@@ -2,6 +2,7 @@ import React, {useRef} from "react";
 import NavBar from "../components/NavBar";
 import { degToCompass, getDateString } from '../utilities/utils';
 import { WeatherData } from "../types/WeatherData";
+import LocationHeader from "../components/LocationHeader";
 
 type HourlyProps = {
     weatherData: WeatherData | null;
@@ -13,7 +14,7 @@ function Hourly({ weatherData }: HourlyProps) {
     if (weatherData) {
         return (
             <>
-                <h1>Norfolk, Massachusetts</h1>
+                <LocationHeader />
                 
                 <NavBar selected="hourly" />
 

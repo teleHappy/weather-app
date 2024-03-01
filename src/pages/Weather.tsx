@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from '../components/NavBar';
 import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
 import { WeatherData } from "../types/WeatherData";
+import LocationHeader from "../components/LocationHeader";
 
 const getTableRow = (label: string, value: string) => {
   return (
@@ -16,8 +17,8 @@ type WeatherComponentProps = {
   weatherData: WeatherData | null;
 }
 
-const Weather = ({weatherData}: WeatherComponentProps) => {
-  
+const Weather = ({ weatherData }: WeatherComponentProps) => {
+
   if (weatherData) {
     const weatherIcon = weatherData.current.weather[0].icon;
     const weatherDescription = weatherData.current.weather[0].description;
@@ -26,12 +27,12 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
 
     return (
       <div>
-        <h1>Norfolk, Massachusetts</h1>
-        
+        <LocationHeader />
+
         <NavBar selected="current" />
-        
+
         <h2 className="currentHeader">{getDateString(weatherData.current.dt)}</h2>
-        
+
         <section className="weatherSection">
           <div className="container">
             {/* Current Temp */}
@@ -40,7 +41,7 @@ const Weather = ({weatherData}: WeatherComponentProps) => {
             </div>
             {/* Current Icon */}
             <div className="currentIcon">
-              <img src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`} 
+              <img src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`}
                 width="100" height="100" alt={weatherDescription} />
             </div>
           </div>
