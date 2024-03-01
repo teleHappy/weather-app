@@ -1,6 +1,6 @@
 import { LocationSearchResult } from "../../types/LocationSearchResult";
 
-const addLocation = (
+export const addLocation = (
   location: LocationSearchResult,
   savedLocations: LocationSearchResult[]
 ): LocationSearchResult[] => {
@@ -20,7 +20,7 @@ const addLocation = (
   return savedLocations;
 };
 
-const getSavedLocations = () => {
+export const getSavedLocations = () => {
   return localStorage.getItem('savedLocations') || '[]';
 }
 /**
@@ -28,8 +28,7 @@ const getSavedLocations = () => {
  * 
  * @param location 
  */
-const setCurrent = (location: LocationSearchResult) => {
+export const setCurrent = (location: LocationSearchResult) => {
   localStorage.setItem("currentLocation", JSON.stringify(location));
 };
 
-export { addLocation, getSavedLocations, setCurrent };
