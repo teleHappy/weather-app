@@ -145,6 +145,10 @@ h2.dayRangeHeader {
   font-size: 1.1rem;
 }
 
+section.daily{
+  background-color: #0b5e88;
+}
+
 .daily table {
   width: 100%;
   border-collapse: collapse;
