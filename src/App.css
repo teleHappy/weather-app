@@ -25,6 +25,7 @@ h2.currentHeader {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 1.1rem;
 }
 
 .weatherSection .container {
@@ -50,7 +51,6 @@ h2.currentHeader {
 
 .currentIcon {
   text-align: center;
-  background-color: rgb(255 255 255 / 50%);
   border-radius: 0.5rem;
 }
 
@@ -288,7 +288,7 @@ dialog {
 }
 
 dialog::backdrop {
-  background-color: rgb(13 42 55 / 54%);
+  background-color: rgb(13 42 55 / 75%);
 }
 
 dialog .wrapper {

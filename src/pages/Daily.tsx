@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import { getDayRangeString, getDateString } from '../utilities/utils'; // adjust the path as needed
 import { Daily as Day } from "../types/WeatherData";
 import { WeatherData } from "../types/WeatherData";
-import LocationHeader from "../components/LocationHeader";
+import LocationHeader from "../components/location/LocationHeader";
 
 function getIconUrl(icon: string) {
     return `http://openweathermap.org/img/wn/${icon}.png`;

@@ -2,7 +2,7 @@ import React, {useRef} from "react";
 import NavBar from "../components/NavBar";
 import { degToCompass, getDateString } from '../utilities/utils';
 import { WeatherData } from "../types/WeatherData";
-import LocationHeader from "../components/LocationHeader";
+import LocationHeader from "../components/location/LocationHeader";
 
 type HourlyProps = {
     weatherData: WeatherData | null;

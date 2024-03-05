@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from '../components/NavBar';
 import { degToCompass, getDateString } from '../utilities/utils'; // adjust the path as needed
 import { WeatherData } from "../types/WeatherData";
-import LocationHeader from "../components/LocationHeader";
+import LocationHeader from "../components/location/LocationHeader";
 
 const getTableRow = (label: string, value: string) => {
   return (
