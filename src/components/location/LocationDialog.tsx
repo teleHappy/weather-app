@@ -136,7 +136,6 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         } else {
             throw new Error('Location not found');
         }
-        closeLocationDialog();
     }
 
     /**
