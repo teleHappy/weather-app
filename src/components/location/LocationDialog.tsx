@@ -98,7 +98,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                 }
             }
         }
-        
+
         if (type === 'remove') {
             updatedLocations = savedLocations.filter(
                 (savedLocation: LocationSearchResult) =>
@@ -195,7 +195,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         return `${locationName}, ${locationState}`
     }
 
-    const getSearchResultsUI = (location: LocationSearchResult) => {
+    const getSearchResultsListItems = (location: LocationSearchResult) => {
 
         return (
             <div className="results">
@@ -220,7 +220,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
      * 
      * @returns {JSX.Element[]} - The rendered location rows.
      */
-    const savedLocationRows = () => {
+    const getSavedLocationListItems = () => {
         const rows = savedLocations.map((location: LocationSearchResult) => {
             const location_id = location.place_id;
             const location_name = location.display_name.split(",")[0];
@@ -267,7 +267,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                         <div className="no-results">Enter a Zip Code</div>
                     }
                     {searchResults.length > 0 &&
-                        getSearchResultsUI(searchResults[0])
+                        getSearchResultsListItems(searchResults[0])
                     }
                 </section>
                 {/* Saved Locations */}
@@ -275,7 +275,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                     {
                         <div className="resultsWrapper">
                             <ul className='results'>
-                                {savedLocationRows()}
+                                {getSavedLocationListItems()}
                             </ul>
                         </div>
                     }
