@@ -35,7 +35,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
     const [savedLocations, setSavedLocations] = useState<LocationSearchResult[]>(JSON.parse(getItemSavedLocations()));
     const dialogRef = useRef<HTMLDialogElement | null>(null);
 
-    // controls the opening and closing of the dialog
+    // dialog is controlled by the parent component's state
     useEffect(() => {
         if (isDialogOpen) {
             hanldeOpenDialog();
@@ -107,8 +107,8 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         const updatedLocations = getUpdatedLocations("add", location);
 
         // local state
-        setSavedLocations(updatedLocations);
         setCurrentLocation(location);
+        setSavedLocations(updatedLocations);
 
         // localstorage state
         setItemCurrentLocation(location);
@@ -127,6 +127,11 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         const location: LocationSearchResult | undefined = savedLocations.find(location => location.place_id === location_id);
         let updatedLocations = [];
         
+        // don't allow removing the last location
+        // TODO: add user messaging about this restriction
+        if(savedLocations.length === 1) {
+            return;
+        }
         if (location) {
             updatedLocations = getUpdatedLocations("remove", location);
             // local state
