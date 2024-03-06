@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react'
 
-function LocationTabs() {
+type LocationTabsProps = {
+  isDialogOpen: boolean
+}
+
+function LocationTabs({isDialogOpen}: LocationTabsProps) {
 
   useEffect(() => {
     resetTabs();
-  }, [])
+  }, [isDialogOpen])
 
   /**
      * Toggles between the search and saved location tabs.
@@ -34,7 +38,7 @@ function LocationTabs() {
 
   return (
     <div id="locationTabs" onClick={toggleTabs}>
-      <button className="active">Add Location</button>
+      <button>Add Location</button>
       <button>Saved Locations</button>
     </div>
   )

@@ -31,8 +31,8 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
     const { setCurrentLocation } = useContext(CurrentLocationContext)
     const [searchValue, setSearchValue] = useState('');
     const [searchResults, setSearchResults] = useState<LocationSearchResult[]>([]);
-    const [searchError, setSearchError] = useState('');
     const [savedLocations, setSavedLocations] = useState<LocationSearchResult[]>(JSON.parse(getItemSavedLocations()));
+    const [searchError, setSearchError] = useState('');
     const dialogRef = useRef<HTMLDialogElement | null>(null);
 
     // dialog is controlled by the parent component's state
@@ -48,9 +48,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
      * Opens the location search dialog.
      */
     const hanldeOpenDialog = () => {
-        setSearchValue('');
-        setSearchResults([]);
-        setSearchError('');
+        onOpenDialog();
         document.body.style.position = 'static';
         document.body.style.top = `-${window.scrollY}px`;
         dialogRef.current?.showModal();
@@ -68,12 +66,20 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
     };
 
     /**
+     * Clears the search value, search results, and search error.
+     */
+    const onOpenDialog = () => {
+        setSearchValue('');
+        setSearchResults([]);
+        setSearchError('');
+    }
+
+    /**
      * Closes the location search dialog.
      */
     const onCloseDialog = () => {
         closeLocationDialog();
     };
-
 
     /**
      * Returns an array of updated locations based on the specified type and location.
@@ -112,7 +118,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
     /**
      * Adds a location to the saved locations.
      */
-    const HandleAdd = () => {
+    const HandleAddLocation = () => {
         const location = searchResults[0];
         const updatedLocations = getUpdatedLocations("add", location);
 
@@ -189,14 +195,25 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         }
     };
 
+    /**
+     * Returns the display name for a given location search result.
+     *
+     * @param location - The location search result.
+     * @returns {JSX.Element[]} - The formatted display name for the location.
+     */
     const getSearchResultDisplayName = (location: LocationSearchResult) => {
         const locationName = location.display_name.split(",")[0];
         const locationState = location.display_name.split(",")[2];
-        return `${locationName}, ${locationState}`
+        return `${locationName}, ${locationState}`;
     }
 
-    const getSearchResultsListItems = (location: LocationSearchResult) => {
-
+    /**
+     * Renders a list of search results for a location.
+     *
+     * @param location - The location search result.
+     * @returns The JSX element representing the list of search results.
+     */
+    const getSearchResultsListItems = (location: LocationSearchResult): JSX.Element => {
         return (
             <div className="results">
                 <ul>
@@ -207,7 +224,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                                 {getSearchResultDisplayName(location)}
                             </span>
                             <span></span>
-                            <button className="btn_primary" onClick={HandleAdd}>Add</button>
+                            <button className="btn_primary" onClick={HandleAddLocation}>Add</button>
                         </li>
                     ))}
                 </ul>
@@ -220,7 +237,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
      * 
      * @returns {JSX.Element[]} - The rendered location rows.
      */
-    const getSavedLocationListItems = () => {
+    const getSavedLocationListItems = (): JSX.Element[] => {
         const rows = savedLocations.map((location: LocationSearchResult) => {
             const location_id = location.place_id;
             const location_name = location.display_name.split(",")[0];
@@ -245,7 +262,8 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
     return (
         <dialog ref={dialogRef}>
             <div className="dialogWrapper">
-                <LocationTabs />
+                
+                <LocationTabs isDialogOpen={isDialogOpen}/>
 
                 {/* Add Location */}
                 <section className="search active">
