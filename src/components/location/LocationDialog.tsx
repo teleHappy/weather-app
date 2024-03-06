@@ -74,6 +74,14 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         closeLocationDialog();
     };
 
+
+    /**
+     * Returns an array of updated locations based on the specified type and location.
+     * 
+     * @param type - The type of update ('add' or 'remove').
+     * @param location - The location to be added or removed.
+     * @returns An array of updated locations.
+     */
     const getUpdatedLocations = (type: string, location: LocationSearchResult) => {
         let updatedLocations: LocationSearchResult[] = []
 
@@ -88,7 +96,6 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                 updatedLocations = [...savedLocations, location];
             }
         }
-
         if (type === 'remove') {
             updatedLocations = savedLocations.filter(
                 (savedLocation: LocationSearchResult) =>
@@ -126,10 +133,10 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         const location_id = (event.target as HTMLButtonElement).dataset.location_id;
         const location: LocationSearchResult | undefined = savedLocations.find(location => location.place_id === location_id);
         let updatedLocations = [];
-        
+
         // don't allow removing the last location
         // TODO: add user messaging about this restriction
-        if(savedLocations.length === 1) {
+        if (savedLocations.length === 1) {
             return;
         }
         if (location) {
@@ -142,21 +149,6 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
             throw new Error('Location not found');
         }
     }
-
-    /**
-     * Handles searching for a location from the search input.
-     * 
-     * @param {React.FormEvent} event - The form event.
-     */
-    const handleSearch = async (event: React.FormEvent) => {
-        event.preventDefault();
-        const searchResults = await getLocationData(searchValue);
-
-        if (searchResults) {
-            setSearchResults(searchResults);
-            setSearchError('');
-        }
-    };
 
     /**
      * Switches the current location to the selected location.
@@ -178,6 +170,21 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
 
         closeLocationDialog();
     }
+
+    /**
+     * Handles searching for a location from the search input.
+     * 
+     * @param {React.FormEvent} event - The form event.
+     */
+    const handleSearch = async (event: React.FormEvent) => {
+        event.preventDefault();
+        const searchResults = await getLocationData(searchValue);
+
+        if (searchResults) {
+            setSearchResults(searchResults);
+            setSearchError('');
+        }
+    };
 
     const getSearchResultDisplayName = (location: LocationSearchResult) => {
         const locationName = location.display_name.split(",")[0];
@@ -217,14 +224,18 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
             const location_state = location.display_name.split(",")[2];
 
             return (
-                <li key={location_id} style={{ paddingRight: ".5rem" }}>
-                    <span>📍</span>
-                    <span>
-                        {location_name},  {location_state}
-                    </span>
-                    <button className="btn_primary" onClick={switchCurrentLocation} data-location_id={location.place_id} style={{ width: "80%" }}>Select</button>
-                    <button className="remove" onClick={handleRemoveLocation} data-location_id={location.place_id}>X</button>
-                </li>
+                <div className="resultsWrapper">
+                    <ul className='results'>
+                        <li key={location_id} style={{ paddingRight: ".5rem" }}>
+                            <span>📍</span>
+                            <span>
+                                {location_name},  {location_state}
+                            </span>
+                            <button className="btn_primary" onClick={switchCurrentLocation} data-location_id={location.place_id} style={{ width: "80%" }}>Select</button>
+                            <button className="remove" onClick={handleRemoveLocation} data-location_id={location.place_id}>X</button>
+                        </li>
+                    </ul>
+                </div>
             )
         });
 
@@ -261,9 +272,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                 </section>
                 {/* Saved Locations */}
                 <section className="saved">
-                    <div className="savedWrapper">
-                        <ul className='results'>{savedLocationRows()}</ul>
-                    </div>
+                    {savedLocationRows()}
                 </section>
 
                 <section className="footer last-item">

@@ -412,7 +412,7 @@ input[name=zipcode] {
   color: rgb(6 6 6);
 }
 
-.savedWrapper {
+.resultsWrapper {
   overflow: scroll;
   height: 190px;
   padding-top: .8rem;
