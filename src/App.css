@@ -292,7 +292,7 @@ dialog::backdrop {
   background-color: rgb(13 42 55 / 75%);
 }
 
-dialog .wrapper {
+dialog .dialogWrapper, dialog .resultsWrapper {
   display: grid;
   grid-template-rows: 2.8rem 1fr 3rem;
   height: 100%;

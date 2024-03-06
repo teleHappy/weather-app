@@ -88,14 +88,17 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
         if (type === 'add') {
             if (savedLocations.length === 0) {
                 updatedLocations = [location];
-            } else if (
-                !savedLocations.some(
+            } else {
+                if (!savedLocations.some(
                     (savedLocation) => savedLocation.place_id === location.place_id
-                )
-            ) {
-                updatedLocations = [...savedLocations, location];
+                )) {
+                    updatedLocations = [...savedLocations, location];
+                } else {
+                    updatedLocations = savedLocations;
+                }
             }
         }
+        
         if (type === 'remove') {
             updatedLocations = savedLocations.filter(
                 (savedLocation: LocationSearchResult) =>
@@ -224,18 +227,15 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
             const location_state = location.display_name.split(",")[2];
 
             return (
-                <div className="resultsWrapper">
-                    <ul className='results'>
-                        <li key={location_id} style={{ paddingRight: ".5rem" }}>
-                            <span>📍</span>
-                            <span>
-                                {location_name},  {location_state}
-                            </span>
-                            <button className="btn_primary" onClick={switchCurrentLocation} data-location_id={location.place_id} style={{ width: "80%" }}>Select</button>
-                            <button className="remove" onClick={handleRemoveLocation} data-location_id={location.place_id}>X</button>
-                        </li>
-                    </ul>
-                </div>
+                <li key={location_id} style={{ paddingRight: ".5rem" }}>
+                    <span>📍</span>
+                    <span>
+                        {location_name},  {location_state}
+                    </span>
+                    <button className="btn_primary" onClick={switchCurrentLocation} data-location_id={location.place_id} style={{ width: "80%" }}>Select</button>
+                    <button className="remove" onClick={handleRemoveLocation} data-location_id={location.place_id}>X</button>
+                </li>
+
             )
         });
 
@@ -244,7 +244,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
 
     return (
         <dialog ref={dialogRef}>
-            <div className="wrapper">
+            <div className="dialogWrapper">
                 <LocationTabs />
 
                 {/* Add Location */}
@@ -272,7 +272,13 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                 </section>
                 {/* Saved Locations */}
                 <section className="saved">
-                    {savedLocationRows()}
+                    {
+                        <div className="resultsWrapper">
+                            <ul className='results'>
+                                {savedLocationRows()}
+                            </ul>
+                        </div>
+                    }
                 </section>
 
                 <section className="footer last-item">
