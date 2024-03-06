@@ -1,34 +1,32 @@
 import { LocationSearchResult } from "../../types/LocationSearchResult";
 
-export const addLocation = (
-  location: LocationSearchResult,
+export const setItemSavedLocations = (
   savedLocations: LocationSearchResult[]
 ): LocationSearchResult[] => {
-  if (savedLocations.length > 0) {
-    if (
-      !savedLocations.some(
-        (savedLocation) => savedLocation.place_id === location.place_id
-      )
-    ) {
-      savedLocations.push(location);
-    }
-  } else {
-    savedLocations.push(location);
-  }
-
+  
   localStorage.setItem("savedLocations", JSON.stringify(savedLocations));
   return savedLocations;
 };
 
-export const getSavedLocations = () => {
-  return localStorage.getItem('savedLocations') || '[]';
+export const removeLocation = (location: LocationSearchResult): LocationSearchResult[] => {
+  const savedLocations = JSON.parse(getItemSavedLocations());
+  const updatedLocations = savedLocations.filter(
+    (savedLocation: LocationSearchResult) =>
+      savedLocation.place_id !== location.place_id
+  );
+
+  localStorage.setItem("savedLocations", JSON.stringify(updatedLocations));
+  return updatedLocations;
 }
+
+export const getItemSavedLocations = () => {
+  return localStorage.getItem("savedLocations") || "[]";
+};
 /**
  * sets the current location in localstorage.
- * 
- * @param location 
+ *
+ * @param location
  */
-export const setCurrent = (location: LocationSearchResult) => {
+export const setItemCurrentLocation = (location: LocationSearchResult) => {
   localStorage.setItem("currentLocation", JSON.stringify(location));
 };
-

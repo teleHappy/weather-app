@@ -3,7 +3,7 @@ import LocationTabs from './LocationTabs';
 import { CurrentLocationContext } from '../../context/CurrentLocationContext';
 import { LocationSearchResult } from '../../types/LocationSearchResult'
 import { getLocationData } from '../../api/location';
-import { addLocation, getSavedLocations, setCurrent } from '../../api/localstorage';
+import { setItemSavedLocations, getItemSavedLocations, setItemCurrentLocation } from '../../api/localstorage';
 
 
 /**
@@ -32,12 +32,12 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
     const [searchValue, setSearchValue] = useState('');
     const [searchResults, setSearchResults] = useState<LocationSearchResult[]>([]);
     const [searchError, setSearchError] = useState('');
-    const [savedLocations, setSavedLocations] = useState<LocationSearchResult[]>(JSON.parse(getSavedLocations()));
+    const [savedLocations, setSavedLocations] = useState<LocationSearchResult[]>(JSON.parse(getItemSavedLocations()));
     const dialogRef = useRef<HTMLDialogElement | null>(null);
 
     // controls the opening and closing of the dialog
     useEffect(() => {
-        if(isDialogOpen) {
+        if (isDialogOpen) {
             hanldeOpenDialog();
         } else {
             handleCloseDialog()
@@ -48,19 +48,12 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
      * Opens the location search dialog.
      */
     const hanldeOpenDialog = () => {
-        document.body.style.position = 'static';
-        document.body.style.top = `-${window.scrollY}px`;
-        dialogRef.current?.showModal();
-    };
-
-    /**
-     * Closes the location search dialog.
-     */
-    const onClose = () => {
         setSearchValue('');
         setSearchResults([]);
         setSearchError('');
-        closeLocationDialog();
+        document.body.style.position = 'static';
+        document.body.style.top = `-${window.scrollY}px`;
+        dialogRef.current?.showModal();
     };
 
     /**
@@ -75,20 +68,74 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
     };
 
     /**
+     * Closes the location search dialog.
+     */
+    const onCloseDialog = () => {
+        closeLocationDialog();
+    };
+
+    const getUpdatedLocations = (type: string, location: LocationSearchResult) => {
+        let updatedLocations: LocationSearchResult[] = []
+
+        if (type === 'add') {
+            if (savedLocations.length === 0) {
+                updatedLocations = [location];
+            } else if (
+                !savedLocations.some(
+                    (savedLocation) => savedLocation.place_id === location.place_id
+                )
+            ) {
+                updatedLocations = [...savedLocations, location];
+            }
+        }
+
+        if (type === 'remove') {
+            updatedLocations = savedLocations.filter(
+                (savedLocation: LocationSearchResult) =>
+                    savedLocation.place_id !== location.place_id
+            );
+        }
+
+        return updatedLocations;
+    }
+
+    /**
      * Adds a location to the saved locations.
      */
-    const add = () => {
+    const HandleAdd = () => {
         const location = searchResults[0];
-        const updatedLocation = addLocation(location, savedLocations);
+        const updatedLocations = getUpdatedLocations("add", location);
 
         // local state
-        setSavedLocations(updatedLocation);
+        setSavedLocations(updatedLocations);
         setCurrentLocation(location);
 
         // localstorage state
-        setCurrent(location);
-
+        setItemCurrentLocation(location);
+        setItemSavedLocations(updatedLocations)
         // close the dialog
+        closeLocationDialog();
+    }
+
+    /**
+    * Handles the removal of a saved location.
+    * 
+    * @param {React.MouseEvent} event - The mouse event.
+    */
+    const handleRemoveLocation = (event: React.MouseEvent) => {
+        const location_id = (event.target as HTMLButtonElement).dataset.location_id;
+        const location: LocationSearchResult | undefined = savedLocations.find(location => location.place_id === location_id);
+        let updatedLocations = [];
+        
+        if (location) {
+            updatedLocations = getUpdatedLocations("remove", location);
+            // local state
+            setSavedLocations(updatedLocations);
+            // localstorage state
+            setItemSavedLocations(updatedLocations);
+        } else {
+            throw new Error('Location not found');
+        }
         closeLocationDialog();
     }
 
@@ -120,20 +167,38 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
             // local state
             setCurrentLocation(location);
             // localstorage state
-            setCurrent(location);
+            setItemCurrentLocation(location);
+        } else {
+            throw new Error('Location not found');
         }
 
         closeLocationDialog();
     }
 
-    /**
-     * Handles the removal of a saved location.
-     * 
-     * @param {React.MouseEvent} event - The mouse event.
-     */
-    const handleRemove = (event: React.MouseEvent) => {
-        // TODO: Implement handleRemove logic
-        handleCloseDialog();
+    const getSearchResultDisplayName = (location: LocationSearchResult) => {
+        const locationName = location.display_name.split(",")[0];
+        const locationState = location.display_name.split(",")[2];
+        return `${locationName}, ${locationState}`
+    }
+
+    const getSearchResultsUI = (location: LocationSearchResult) => {
+
+        return (
+            <div className="results">
+                <ul>
+                    {searchResults.map((result: LocationSearchResult, idx) => (
+                        <li key={idx}>
+                            <span>📍</span>
+                            <span>
+                                {getSearchResultDisplayName(location)}
+                            </span>
+                            <span></span>
+                            <button className="btn_primary" onClick={HandleAdd}>Add</button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
     }
 
     /**
@@ -142,15 +207,21 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
      * @returns {JSX.Element[]} - The rendered location rows.
      */
     const savedLocationRows = () => {
-        const rows = savedLocations.map((location: LocationSearchResult, idx) => {
-            return (<li key={idx} style={{ paddingRight: ".5rem" }}>
-                <span>📍</span>
-                <span>
-                    {location.display_name.split(",")[0]},  {location.display_name.split(",")[2]}
-                </span>
-                <button className="btn_primary" onClick={switchCurrentLocation} data-location_id={location.place_id} style={{ width: "80%" }}>Select</button>
-                <button className="remove" onClick={handleRemove}>X</button>
-            </li>)
+        const rows = savedLocations.map((location: LocationSearchResult) => {
+            const location_id = location.place_id;
+            const location_name = location.display_name.split(",")[0];
+            const location_state = location.display_name.split(",")[2];
+
+            return (
+                <li key={location_id} style={{ paddingRight: ".5rem" }}>
+                    <span>📍</span>
+                    <span>
+                        {location_name},  {location_state}
+                    </span>
+                    <button className="btn_primary" onClick={switchCurrentLocation} data-location_id={location.place_id} style={{ width: "80%" }}>Select</button>
+                    <button className="remove" onClick={handleRemoveLocation} data-location_id={location.place_id}>X</button>
+                </li>
+            )
         });
 
         return rows;
@@ -176,24 +247,12 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                             </div>
                         </form>
                     </div>
+                    {/* {searchResults.length === 0 ? <div className="no-results">No Results Found</div> : getSearchResultsUI()} */}
                     {searchResults.length === 0 &&
                         <div className="no-results">Enter a Zip Code</div>
                     }
                     {searchResults.length > 0 &&
-                        <div className="results">
-                            <ul>
-                                {searchResults.map((result: LocationSearchResult, idx) => (
-                                    <li key={idx}>
-                                        <span>📍</span>
-                                        <span>
-                                            {result.display_name.split(",")[0]},  {result.display_name.split(",")[2]}
-                                        </span>
-                                        <span></span>
-                                        <button className="btn_primary" onClick={add}>Add</button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        getSearchResultsUI(searchResults[0])
                     }
                 </section>
                 {/* Saved Locations */}
@@ -204,7 +263,7 @@ function LocationDialog({ isDialogOpen, closeLocationDialog }: LocationDialogPro
                 </section>
 
                 <section className="footer last-item">
-                    <button className="primary" onClick={onClose}>Close</button>
+                    <button className="primary" onClick={onCloseDialog}>Close</button>
                 </section>
             </div>
         </dialog>
