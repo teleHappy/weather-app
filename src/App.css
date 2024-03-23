@@ -36,7 +36,7 @@ h2.currentHeader {
   background-color: rgb(255 255 255 / 33%);
 }
 
-.weatherSection .container>div {
+.weatherSection .container > div {
   flex: 1;
 }
 
@@ -65,17 +65,15 @@ h2.currentHeader {
 .observations h2 {
   font-size: 1.1rem;
   margin: 5px;
-  ;
 }
 
 .observationSection {
-  margin-top: .8rem;
+  margin-top: 0.8rem;
 }
 
 .observations table {
   width: 100%;
 }
-
 
 .observations table tr td {
   padding: 5px;
@@ -88,7 +86,6 @@ h2.currentHeader {
   display: flex;
   min-width: 350px;
   width: 100%;
-  margin: 40px 0;
 }
 
 .hourly table {
@@ -100,7 +97,6 @@ h2.currentHeader {
 .hourly table td {
   padding: 14px;
   text-align: left;
-
 }
 
 .hourly table td:first-child {
@@ -135,7 +131,7 @@ h2.currentHeader {
 }
 
 .tdAlignRight {
-  text-align: left
+  text-align: left;
 }
 
 /* Daily */
@@ -146,7 +142,7 @@ h2.dayRangeHeader {
   font-size: 1.1rem;
 }
 
-section.daily{
+section.daily {
   background-color: #0b5e88;
 }
 
@@ -219,7 +215,6 @@ section.daily{
 }
 
 @media (max-width: 915px) {
-
   .hourly table th:nth-child(5),
   .hourly table td:nth-child(5) {
     display: none;
@@ -236,7 +231,7 @@ section.daily{
 
   .daily table th:nth-child(3),
   .daily table td:nth-child(3) {
-    width: 70px
+    width: 70px;
   }
 }
 
@@ -274,7 +269,7 @@ section.daily{
 #locationTabs button.active {
   color: rgb(42 76 94);
   background-color: #fff;
-  cursor:default
+  cursor: default;
 }
 
 dialog {
@@ -285,14 +280,15 @@ dialog {
   overflow: hidden;
   border: 0;
   box-shadow: 2px 11px 12px 0px rgba(0, 0, 0, 0.75);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 dialog::backdrop {
   background-color: rgb(13 42 55 / 75%);
 }
 
-dialog .dialogWrapper, dialog .resultsWrapper {
+dialog .dialogWrapper,
+dialog .resultsWrapper {
   display: grid;
   grid-template-rows: 2.8rem 1fr 3rem;
   height: 100%;
@@ -302,27 +298,27 @@ dialog .dialogWrapper, dialog .resultsWrapper {
 dialog .resultsWrapper {
   overflow: scroll;
   height: 94%;
-  padding-top: .8rem;
+  padding-top: 0.8rem;
 }
 
 dialog .footer {
   border-top: 1px solid #d0e4e7;
   display: grid;
   grid-template-columns: 1fr;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .cancelBtn {
   all: unset;
-  font-size: .7rem;
+  font-size: 0.7rem;
   position: absolute;
-  right: .4rem;
+  right: 0.4rem;
   top: 0.3rem;
   color: #fff;
   background-color: rgb(202, 35, 35);
   padding: 2px 4px;
   border-radius: 3px;
-  width: .7rem;
+  width: 0.7rem;
   height: 1rem;
   text-align: center;
   cursor: pointer;
@@ -330,16 +326,16 @@ dialog .footer {
 
 .cancelBtn .del {
   width: 100%;
-  font-size: .5rem;
+  font-size: 0.5rem;
   position: relative;
   top: 0;
   left: 0;
-  padding: .625px 1.25px;
+  padding: 0.625px 1.25px;
 }
 
 section.search {
   width: 100%;
-  margin-top: .8rem;
+  margin-top: 0.8rem;
 }
 
 /*  */
@@ -347,13 +343,13 @@ section.search button,
 section.saved ul li button {
   all: unset;
   background-color: rgb(129 136 132 / 58%);
-  padding: .2rem;
+  padding: 0.2rem;
   text-align: center;
   border-radius: 0.2rem;
   cursor: pointer;
 }
 
-input[name=zipcode] {
+input[name="zipcode"] {
   font-size: 16px;
 }
 
@@ -367,13 +363,12 @@ input[name=zipcode] {
 
 #location-error {
   color: rgb(202, 35, 35);
-  padding-left: .3rem;
+  padding-left: 0.3rem;
 }
 
 .search,
 .saved {
   display: none;
-  ;
 }
 
 .search.active,
@@ -404,7 +399,6 @@ input[name=zipcode] {
   margin: 0;
 }
 
-
 .saved ul {
   list-style: none;
   padding: 0;
@@ -412,8 +406,7 @@ input[name=zipcode] {
   width: 99%;
 }
 
-
-.results ul>li {
+.results ul > li {
   display: grid;
   grid-template-columns: min-content max-content 1fr 5rem;
   color: rgb(6 6 6);
@@ -422,56 +415,55 @@ input[name=zipcode] {
 .resultsWrapper {
   overflow: scroll;
   height: 190px;
-  padding-top: .8rem;
+  padding-top: 0.8rem;
 }
 
 .saved ul {
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 
-.saved ul>li {
+.saved ul > li {
   display: grid;
   grid-template-columns: 1.2rem 13.6rem 1fr 1rem;
   align-items: center;
-  margin-bottom: .8rem;
-  padding: 0.2rem .5rem;
+  margin-bottom: 0.8rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .saved ul > li button {
   all: unset;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #ffffff;
   background-color: #3b82f6;
   text-align: center;
   border-radius: 0.2rem;
   cursor: pointer;
-} 
+}
 
-.saved ul>li button.remove{
+.saved ul > li button.remove {
   font-size: 0.8rem;
   font-weight: 800;
   position: relative;
   top: 0;
   left: 0;
   color: rgb(205 79 79);
-  background-color: #ffffff
+  background-color: #ffffff;
 }
 
-.results ul>li>span,
-.saved ul>li>span {
-  padding-right: .2rem;
+.results ul > li > span,
+.saved ul > li > span {
+  padding-right: 0.2rem;
 }
 
 button.btn_primary {
-  font-size: .8rem !important;
+  font-size: 0.8rem !important;
   color: #ffffff !important;
   background-color: rgb(31 138 192) !important;
 }
 
-
 .footer button.primary {
   all: unset;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #ffffff;
   background-color: rgb(31 138 192);
   text-align: center;
