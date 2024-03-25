@@ -211,7 +211,7 @@ section.daily {
 }
 
 .nav_item a:hover {
-  color: #02a9fd;
+  color: #fff;
 }
 
 @media (max-width: 915px) {
