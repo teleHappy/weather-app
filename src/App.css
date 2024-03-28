@@ -5,6 +5,11 @@
   max-width: 600px;
 }
 
+.rd {
+  fill: #ffffff;
+  font-size: 0.9rem;
+}
+
 h1 {
   margin: 0;
   padding: 10px 0;
