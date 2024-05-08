@@ -1,17 +1,23 @@
-import React from "react";
-import { getDateString } from "../../utilities/utils";
-import { Daily as Day } from "../../types/WeatherData";
+import React from 'react';
+import { getLocalTime } from '../../utilities/utils';
+import { Daily as Day, WeatherData } from '../../types/WeatherData';
 
 const getIconUrl = (icon: string) => {
   return `http://openweathermap.org/img/wn/${icon}.png`;
 };
 
-function DailySection({ weatherData, mode = "tabular" }: { weatherData: any; mode?: string }): JSX.Element {
+function DailySection({
+  weatherData,
+  mode = 'tabular',
+}: {
+  weatherData: any;
+  mode?: string;
+}): JSX.Element {
   return (
-    <section className="daily">
-      {mode === "tabular" && (
+    <section className='daily'>
+      {mode === 'tabular' && (
         <table>
-          <thead hidden role="rowheader">
+          <thead hidden role='rowheader'>
             <tr>
               <th>Day</th>
               <th>Conditions</th>
@@ -22,11 +28,13 @@ function DailySection({ weatherData, mode = "tabular" }: { weatherData: any; mod
           <tbody>
             {weatherData.daily.map((day: Day) => (
               <tr key={day.dt}>
-                <td>{getDateString(day.dt, "day")}</td>
-                <td style={{ backgroundColor: "rgb(255 255 255 / 50%)" }}>
+                <td>
+                  {getLocalTime(day.dt, weatherData.timezone_offset, 'day')}
+                </td>
+                <td style={{ backgroundColor: 'rgb(255 255 255 / 50%)' }}>
                   <img src={getIconUrl(day.weather[0].icon)} />
                 </td>
-                <td style={{ width: "4rem", textAlign: "right" }}>
+                <td style={{ width: '4rem', textAlign: 'right' }}>
                   {Math.round(day.temp.max)} | {Math.round(day.temp.min)}
                 </td>
                 <td>{day.summary}</td>

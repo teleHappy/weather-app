@@ -1,63 +1,67 @@
-import moment from "moment";
-import { WeatherData } from "../types/WeatherData";
+import moment from 'moment';
+import { WeatherData } from '../types/WeatherData';
 
 type DateRange = {
-  dates: WeatherData["daily"] | WeatherData["hourly"];
-}
+  dates: WeatherData['daily'] | WeatherData['hourly'];
+};
 
 function degToCompass(num: number) {
   const val = Math.floor(num / 22.5 + 0.5);
   const arr = [
-    "N",
-    "NNE",
-    "NE",
-    "ENE",
-    "E",
-    "ESE",
-    "SE",
-    "SSE",
-    "S",
-    "SSW",
-    "SW",
-    "WSW",
-    "W",
-    "WNW",
-    "NW",
-    "NNW",
+    'N',
+    'NNE',
+    'NE',
+    'ENE',
+    'E',
+    'ESE',
+    'SE',
+    'SSE',
+    'S',
+    'SSW',
+    'SW',
+    'WSW',
+    'W',
+    'WNW',
+    'NW',
+    'NNW',
   ];
   return arr[val % 16];
 }
 
-function getDateRangeString(dates: DateRange["dates"], type: string = "daily"): string {
-  const startDate = dates[0].dt;
-  const endDate = dates[dates.length - 1].dt;
-  let dateRangeString = ""
+function getDateRangeString(
+  dates: DateRange['dates'],
+  tz_offset: number,
+  type: string = 'daily'
+): string {
+  const startDate = getLocalTime(dates[0].dt, tz_offset, type);
+  const endDate = getLocalTime(dates[dates.length - 1].dt, tz_offset, type);
 
-  if (type === 'daily') {
-    dateRangeString = moment.unix(startDate).format("dddd MMMM Do") + " - " + moment.unix(endDate).format("dddd MMMM Do");
-  }
-  if (type == 'hourly') {
-    dateRangeString = moment.unix(startDate).format("ddd Do h:mm a") + " - " + moment.unix(endDate).format("ddd Do h:mm a");
-  }
-
-  return dateRangeString
+  return startDate + ' - ' + endDate;
 }
 
-function getDateString(unix_timestamp: number, format?: string): string {
+function getLocalTime(
+  utcTimestamp: number,
+  utcShiftInSeconds: number,
+  format: string
+) {
+  // Convert the UTC timestamp to a Moment.js object
+  const momentObj = moment.unix(utcTimestamp);
 
-  let dateString = moment.unix(unix_timestamp).format("dddd MMMM Do h:mm a"); // default
+  // Apply the UTC shift
+  const localTime = momentObj.utcOffset(utcShiftInSeconds / 60); // utcOffset is in minutes
 
-  if (format === "time") {
-    dateString = moment.unix(unix_timestamp).format("h:mm a");
+  switch (format) {
+    case 'day':
+      return localTime.format('ddd');
+    case 'daily':
+      return localTime.format('dddd MMMM Do');
+    case 'hourly':
+      return localTime.format('ddd Do h:mm a');
+    case 'time':
+      return localTime.format('h:mm a');
+    default:
+      return localTime.format('dddd MMMM Do h:mm a');
   }
-  if (format === "day") {
-    dateString = moment.unix(unix_timestamp).format("ddd");
-  }
-  if (format === "full") {
-    dateString = moment.unix(unix_timestamp).format("dddd MMMM Do YYYY");
-  }
-
-  return dateString
 }
 
-export { degToCompass, getDateString, getDateRangeString as getDayRangeString };
+export { degToCompass, getDateRangeString as getDayRangeString, getLocalTime };

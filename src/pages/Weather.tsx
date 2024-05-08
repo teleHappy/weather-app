@@ -1,10 +1,10 @@
-import React from "react";
-import NavBar from "../components/NavBar";
-import { degToCompass, getDateString } from "../utilities/utils"; // adjust the path as needed
-import { WeatherData } from "../types/WeatherData";
-import LocationHeader from "../components/location/LocationHeader";
-import WeatherSection from "../components/weather/WeatherSection";
-import ObservationDeatils from "../components/weather/ObservationDeatils";
+import React from 'react';
+import NavBar from '../components/NavBar';
+import { getLocalTime } from '../utilities/utils'; // adjust the path as needed
+import { WeatherData } from '../types/WeatherData';
+import LocationHeader from '../components/location/LocationHeader';
+import WeatherSection from '../components/weather/WeatherSection';
+import ObservationDeatils from '../components/weather/ObservationDeatils';
 
 const getTableRow = (label: string, value: string) => {
   return (
@@ -25,9 +25,15 @@ const Weather = ({ weatherData }: WeatherComponentProps) => {
       <div>
         <LocationHeader />
 
-        <NavBar selected="current" />
+        <NavBar selected='current' />
 
-        <h2 className="currentHeader">{getDateString(weatherData.current.dt)}</h2>
+        <h2 className='currentHeader'>
+          {getLocalTime(
+            weatherData.current.dt,
+            weatherData.timezone_offset,
+            'default'
+          )}
+        </h2>
 
         <WeatherSection weatherData={weatherData} />
 

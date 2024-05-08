@@ -1,9 +1,9 @@
-import React from "react";
-import NavBar from "../components/NavBar";
-import { getDayRangeString } from "../utilities/utils"; // adjust the path as needed
-import { WeatherData } from "../types/WeatherData";
-import LocationHeader from "../components/location/LocationHeader";
-import DailySection from "../components/weather/DailySection";
+import React from 'react';
+import NavBar from '../components/NavBar';
+import { getDayRangeString } from '../utilities/utils'; // adjust the path as needed
+import { WeatherData } from '../types/WeatherData';
+import LocationHeader from '../components/location/LocationHeader';
+import DailySection from '../components/weather/DailySection';
 
 type DailyProps = {
   weatherData: WeatherData | null;
@@ -15,9 +15,11 @@ function Daily({ weatherData }: DailyProps) {
       <>
         <LocationHeader />
 
-        <NavBar selected="daily" />
+        <NavBar selected='daily' />
 
-        <h2 className="dayRangeHeader">{getDayRangeString(weatherData.daily)}</h2>
+        <h2 className='dayRangeHeader'>
+          {getDayRangeString(weatherData.daily, weatherData.timezone_offset)}
+        </h2>
 
         <DailySection weatherData={weatherData} />
       </>
